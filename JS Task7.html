@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con {
+            height: 400px;
+            width: 1500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #start {
+            margin-left: 350px;
+        }
+
+        #stop {
+            margin-left: 50px;
+        }
+
+        #imgg {
+            height: 150px;
+            margin-top: 150px;
+            position: absolute;
+        }
+        #start{
+            background-color: rgb(208, 208, 208);
+            padding: 10px;
+
+        }
+        #stop{
+            background-color: rgb(208, 208, 208);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <img src="https://imgs.search.brave.com/hFA9ze9ILzAIidA-_0FFNHjs1bEJ-fn9qU1stv1G3nU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAzLzA1LzEzLzY2/LzM2MF9GXzMwNTEz/NjY0NF9xN2F4Wkc4/SEljWTAxdmVwU1l4/aXl5TG5QeFBxZjgw/TS5qcGc" id="imgg">
+    </div>
+    <button id="start" onclick="startt()">Start</button>
+    <button id="stop" onclick="stopp()">Stop</button>
+    <script>
+        var train = document.getElementById("imgg");
+        var startbtn = document.getElementById('start');
+        var stopbtn = document.getElementById('stop');
+        let animationId;
+
+        function startt() {
+            let position = 0;
+            const speed = 2;
+
+            function move() {
+                position += speed;
+                train.style.left = position + 'px';
+
+                if (position < 1500 ) {
+                    animationId = requestAnimationFrame(move);
+                }
+            }
+
+            animationId = requestAnimationFrame(move);
+        }
+
+        function stopp() {
+            cancelAnimationFrame(animationId);
+        }
+
+        startbtn.addEventListener('click', startt);
+        stopbtn.addEventListener('click', stopp);
+    </script>
+</body>
+</html>
